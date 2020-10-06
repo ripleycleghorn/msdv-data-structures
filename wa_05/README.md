@@ -6,7 +6,7 @@ This week's assignment had us create the datasource for what will be Final Assig
 
 For the first part, we had to draw an initial data model for the structure of our database. I included 5 variables in my dataset: ```date, duration, entry, mode, and distance```. ```Date``` is in the date/time format and serves as my primary key. ```Duration``` and ```distance``` are numbers, and ```entry``` is a string. ```Mode``` is an array of strings, since I can have multiple exercise modes in one session. All are required fields except for ```distance``` (which doesn't make sense when doing stationary exercise). This data will be normalized, since I can never be doing two different exercise sessions at the same time.
 
-<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_05/datamodel.jpg" alt="Data modeld drawing" width="500" height="600">
+<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_05/datamodel.jpg" alt="Data modeld drawing">
 
 ### Part Two: Create the data for the database
 
