@@ -1,4 +1,5 @@
-# Week 6
+# Weekly Assignment 6
+Both parts of this assignment had to do with retrieving filtered rows from two different databases, one SQL and one NoSQL.
 
 ### Part One
 In the first part of this week's assignment, we had to write and execute an SQL query for our aa data in order to filter it by parameters that the future users will likely use to search. Because my data only has three fields so far: ```address, latitude, and longitude,``` the most reasonable parameter is address. Maybe they know a specific location and only want to see meetings at that location. I doubt they would search by latitude and longitude, so I left that out. To access the database and table I used the same credentials from week 4. Then I used the SQL ```LIKE``` operator to find any address that started with ```252```. This returned 12 rows of meetings at 252 W 46th St (this was the only address that started with 252, and is repeated 12 times). I imagine when I have more columns, I will filter by parameters such as time, day, and meeting type.
