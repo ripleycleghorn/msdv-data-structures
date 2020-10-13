@@ -33,7 +33,7 @@ client.query(thisQuery, (err, res) => {
     }
 });
 ```
-<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_06/partone.png" alt="part one: query result">
+<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_06/partone.png" alt="part one: query result" height=50% width=50%>
 
 ### Part Two
 For the next part of the assignment we had to perform a similar task, but this time with our diary entries from our personal blog we started last week. Mine is an exercise log, so I decided to filter my data by mode (in this case roller skating) and date (within the last week). I needed to use name subsitution for the word ```mode``` since that is a reserved word in DynamoDB. In order to avoid having to do the same for the ```date``` field, I just renamed it ```timedate``` in my table. When filtering (like when creating items in DynamoDB) it's necessary to change numbers to strings, even if they are a number type. This was the case for date as well, which is why I used the ```toString()``` method on ```minDate``` and ```maxDate```. I used the ```valueOf()``` method because I altered my week 5 code to store the timedate as the number of milliseconds since 1970. This will make it easier to sort by date in the future. My result returned two items, which were correct.
@@ -72,7 +72,9 @@ dynamodb.query(params, function(err, data) {
 });
 ```
 DynamoDB Table:
-<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_06/partTwoA.png" alt="part two: database">
+
+<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_06/partTwoA.png" alt="part two: database" height=75% width=75%>
 
 Query result:
-<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_06/partTwoB.png" alt="part two: query result">
+
+<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_06/partTwoB.png" alt="part two: query result" height=50% width=50%>
