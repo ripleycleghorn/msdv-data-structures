@@ -1,7 +1,7 @@
 # Weekly Assignment 7
 (This assignment is not complete, but I'm uploading what I have so far)
 
-##Part One
+## Part One
 For part a) of this assignment, I looped over each text file and parse them for all the information I will need for the application. For each group of meetings I will have: 
 
 ```
@@ -123,7 +123,7 @@ textFiles.forEach(item => {
     
 });
 ```
-##Part Two
+## Part Two
 
 In this part I created a table for all the meetings and their details. In this table, addresses could repeat, whereas in my second table addresses should be unique and include their geolocations. I only got as far as creating and inserting the data for the first table, and haven't finished parsing the addresses with their geolocations for the second table.
 
@@ -161,7 +161,7 @@ client.query(thisQuery, (err, res) => {
     client.end();
 });
 ```
-##Part Three
+## Part Three
 Now that I created the table I had to insert my data. Eventually I will put this inside a loop and go through each json file to insert, but for now I just tested them one by one. I only managed to successfully test files one and two, because the third had the same error with the apostrophe.
 
 ```javascript
