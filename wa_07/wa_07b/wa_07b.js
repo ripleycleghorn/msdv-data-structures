@@ -17,12 +17,10 @@ db_credentials.port = 5432;
 const client = new Client(db_credentials);
 client.connect();
 
-//for now I'm leaving them all as strings to test it out
-var thisQuery = "CREATE TABLE aadetails (address varchar(100), location_notes varchar(200), wheelchair_accesible varchar(100), day varchar(100), start_time varchar(100), end_time varchar(100), type varchar(100));";
+//create table with all meeting details
+var thisQuery = "CREATE TABLE aadetails (ID serial primary key, address varchar(100), latitude varchar(100), longitude varchar(100), details varchar(200), building varchar(200), title varchar(200), location_notes varchar(200), wheelchair_accesible varchar(100), day varchar(100), start_time varchar(100), end_time varchar(100), type varchar(100));";
 
-// details varchar(200), building varchar(200), title varchar(200),
-
-// var thisQuery = "DROP TABLE aadetails;"; 
+// var thisQuery = "DROP TABLE aadetails;";
 
 client.query(thisQuery, (err, res) => {
     console.log(err, res);
