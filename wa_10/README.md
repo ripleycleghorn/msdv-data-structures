@@ -23,7 +23,7 @@ The visualization I'll choose for my process blog data is a simple heat map base
 
 In order to display this information I will need to group entries by day (not day/time). The minimum amount of data I will need to display the information will be one month of records, since the default view will be an entire month. Although the default view could just as well be a week, in order to achieve an effecitve overview of how often I exercise, I think 30 days is better suited.
 
-<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_10/finalassignment2.jpg" alt="Data interface drawing 2">
+<img style="width:75%; height:auto" src="https://ripleycleghorn.github.io/msdv-data-structures/wa_10/finalassignment2.jpg" alt="Data interface drawing 2">
 
 ## Final Assignment 3
 
