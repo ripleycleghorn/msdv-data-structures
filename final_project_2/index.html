@@ -1,0 +1,57 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Process Blog</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+      <script type="text/javascript" src="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.css" />
+   </head>
+   <body>
+      <div id="A">Exercise Blog</div>
+      <p>
+         <button id="domain-highlight-previous-selector" style="margin-bottom: 10px;">Backwards</button>
+         <button id="domain-highlight-next-selector" style="margin-bottom: 10px;">Forwards</button>
+         <script type="text/javascript">
+            // Simple function to convert parsed tabular csv data to 
+            // something resembling a Javascript object.
+            function converter(data) {
+                var i, total, results = {};
+                //NOTE, when adding sample data to the csv from my process blog db, I had to chop off the last three zeros otherwise it didn't work
+                for (i=0, total = data.length; i<total; i++) {
+                    results[+data[i].datetime] = +data[i].value ;
+                }
+                return results;
+            }    
+            var start_date = new Date(); // Instantiate a new Date object
+            start_date.setDate(start_date.getDate() -7 ); // Set the date to 7 days ago
+            
+            //Instantiate a calendar (SVG) object
+            var cal = new CalHeatMap();
+            // Initialize the object with rendering parameters
+            cal.init({
+                itemSelector: "#A", // Use the hospital mnemonic as a dic selector
+                itemNamespace: "A", // Assign each one a unique namespace
+                data: "A_data.csv", // Use mnemonic to identify the corresponding csv file
+                dataType: "csv", // Use the cal-heatmap csv data parser
+                afterLoadData: converter, // After parsing the csv, run reults through the converter function
+                range: 2, // Set number of Day domains/blocks
+                domain: "month", // Set each domain to be 1 day
+                subDomain: "x_day", // Illustrate hours left to right (as opposed to top to bottom)
+                // subDomainTextFormat: "%d",
+                
+                start: new Date(2020, 9, 1), // Set the initial start date to render (month starts with index 0)
+                cellSize: 30, // Set size of each days
+                domainGutter: 5, // Set spacing between domains
+                domainMargin: 5,
+                animationDuration: 900, // Set animation speed
+                nextSelector: "#domain-highlight-next-selector", // What to call when selector buttons are clicked
+                previousSelector: "#domain-highlight-previous-selector",
+                tooltip: true,
+                itemName: ["minute", "minutes"], // Set the data class labels for roll over tool tips
+                displayLegend: true // Draw a legend under each panel
+                });
+         </script>
+   </body>
+</html>
