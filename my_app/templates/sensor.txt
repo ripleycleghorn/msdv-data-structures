@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    rect.bar-rect {
+        fill: #189ad3;
+    }
+
+    rect.bar-rect:hover {
+        fill: black;
+        transition: all .2s;
+    }
+</style>
+
+<body>
+    <div class="canvas"></div>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <script>
+        const width = 1000;
+        const height = 600;
+        const margin = { 'top': 20, 'right': 20, 'bottom': 100, 'left': 100 };
+        const graphWidth = width - margin.left - margin.right;
+        const graphHeight = height - margin.top - margin.bottom;
+
+        const svg = d3.select('.canvas')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+        const graph = svg.append('g')
+            .attr('width', graphWidth)
+            .attr('height', graphHeight)
+            .attr('transform', `translate(${margin.left}, ${margin.top})`);
+        const gXAxis = graph.append('g')
+            .attr('transform', `translate(0, ${graphHeight})`);
+        const gYAxis = graph.append('g')
+
+
+        var today = new Date;
+        today.toUTCString;
+        var modifiedDate = new Date;
+        var lastMonth = modifiedDate.setMonth(modifiedDate.getMonth() - 1);
+
+        var data = {{{sensordata}}} ;
+        var parser = d3.utcParse("%Y-%m-%dT%H:%M:%S.%LZ");
+
+        data.forEach(element => {
+            element.sensortime = parser(element.sensortime);
+        });
+        console.log(data)
+
+        const x = d3.scaleTime()
+            // .domain([lastMonth, today])
+            .domain(d3.extent(data, d => d.sensortime))
+            .range([0, graphWidth]);
+
+        const y = d3.scaleLinear()
+            // .domain([65, d3.max(data, d => d.sensorvalue)])
+            .domain([60, 80])
+            .range([graphHeight, 0]);
+
+        const rects = graph.selectAll('rect')
+            .data(data);
+        rects.attr('width', 5)
+            .attr('class', 'bar-rect')
+            .attr('height', d => graphHeight - y(d.sensorvalue))
+            .attr('x', d => x(d.sensortime))
+            .attr('y', d => y(d.sensorvalue));
+        rects.enter()
+            .append('rect')
+            .attr('class', 'bar-rect')
+            .attr('width', 5)
+            .attr('height', d => graphHeight - y(d.sensorvalue))
+            .attr('x', d => x(d.sensortime))
+            .attr('y', d => y(d.sensorvalue));
+        const xAxis = d3.axisBottom(x)
+            .ticks(3);
+        const yAxis = d3.axisLeft(y)
+            .ticks(5);
+        // .tickFormat(d => `USD ${d / 1000}K`);
+        gXAxis.call(xAxis);
+        gYAxis.call(yAxis);
+        gXAxis.selectAll('text')
+            .style('font-size', 14);
+
+        gYAxis.selectAll('text')
+            .style('font-size', 14);
+
+    </script>
+</body>
+
+</html>
