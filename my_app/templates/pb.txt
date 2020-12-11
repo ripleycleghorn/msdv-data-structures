@@ -8,56 +8,82 @@
    <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
    <script type="text/javascript" src="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
    <link rel="stylesheet" href="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.css" />
+   <link rel="stylesheet" href="style.css" />
+   <style>
+      .container {
+         display: grid;
+         grid-template-areas: "title"
+            "A";
+         grid-template-rows: .5fr 1.5fr;
+         grid-template-columns: 1fr;
+         padding-left: 50px;
+         padding-top: 50px;
+      }
+
+      .title {
+         grid-area: title;
+         /* text-align: center; */
+      }
+
+      .A {
+         grid-area: A;
+      }
+   </style>
 </head>
 
 <body>
-   <div id="A">Exercise Blog</div>
-   <script>
-      // Simple function to convert parsed tabular csv data to something resembling a Javascript object.
-      function converter(data) {
-         var results = {};
-         data.forEach(item => {
-            // console.log(item.timedate.N);
-            var length = item.timedate.N.length;
-            //chop off the last three zeros otherwise it doesn't work
-            results[+item.timedate.N.substring(0, length - 3)] = +item.duration.N;
+   <div class="container">
+      <div class="title">Exercise Blog</div>
+      <div id="A"></div>
+      <script>
+         // Simple function to convert parsed tabular csv data to something resembling a Javascript object.
+         function converter(data) {
+            var results = {};
+            data.forEach(item => {
+               // console.log(item.timedate.N);
+               var length = item.timedate.N.length;
+               //chop off the last three zeros otherwise it doesn't work
+               results[+item.timedate.N.substring(0, length - 3)] = +item.duration.N;
+            });
+            // console.log(results);
+            return results;
+         }
+
+         var start_date = new Date(); // Instantiate a new Date object
+         start_date.setMonth(start_date.getMonth() - 3); // Set the month to 3 months ago
+         console.log(start_date);
+         // start_date.setDate(start_date.getDate());
+
+         //Instantiate a calendar (SVG) object
+         var cal = new CalHeatMap();
+         // Initialize the object with rendering parameters
+         cal.init({
+            itemSelector: "#A", // Select the id from the html doc
+            //data: "data.json",
+            data: {{{pbdata}}},
+            dataType: "json", // Use the cal-heatmap csv data parser
+            afterLoadData: converter, // After parsing the csv, run reults through the converter function
+            range: 4, // Set number of Month domains/blocks
+            domain: "month", // Set each domain to be 1 month
+            subDomain: "x_day", // Illustrate hours left to right (as opposed to top to bottom)
+            // subDomainTextFormat: "%d",
+            // start: new Date(2020, 8, 1), // Set the initial start date to render (month starts with index 0)
+            start: start_date,
+            cellSize: 30, // Set size of each days
+            domainGutter: 5, // Set spacing between domains
+            domainMargin: 5,
+            animationDuration: 900, // Set animation speed
+            nextSelector: "#domain-highlight-next-selector", // What to call when selector buttons are clicked
+            previousSelector: "#domain-highlight-previous-selector",
+            tooltip: true,
+            itemName: ["minute", "minutes"], // Set the data class labels for roll over tool tips
+            displayLegend: true // Draw a legend under each panel
          });
-         // console.log(results);
-         return results;
-      }
-
-      var start_date = new Date(); // Instantiate a new Date object
-      start_date.setDate(start_date.getDate() - 7); // Set the date to 7 days ago
-
-      //Instantiate a calendar (SVG) object
-      var cal = new CalHeatMap();
-      // Initialize the object with rendering parameters
-      cal.init({
-         itemSelector: "#A", // Select the id from the html doc
-         // data: "data/data.json",
-         data: {{{pbdata}}},
-         dataType: "json", // Use the cal-heatmap csv data parser
-         afterLoadData: converter, // After parsing the csv, run reults through the converter function
-         range: 2, // Set number of Day domains/blocks
-         domain: "month", // Set each domain to be 1 day
-         subDomain: "x_day", // Illustrate hours left to right (as opposed to top to bottom)
-         // subDomainTextFormat: "%d",
-
-         start: new Date(2020, 9, 1), // Set the initial start date to render (month starts with index 0)
-         cellSize: 30, // Set size of each days
-         domainGutter: 5, // Set spacing between domains
-         domainMargin: 5,
-         animationDuration: 900, // Set animation speed
-         nextSelector: "#domain-highlight-next-selector", // What to call when selector buttons are clicked
-         previousSelector: "#domain-highlight-previous-selector",
-         tooltip: true,
-         itemName: ["minute", "minutes"], // Set the data class labels for roll over tool tips
-         displayLegend: true // Draw a legend under each panel
-      });
-   </script>
-   <p>
-      <button id="domain-highlight-previous-selector" style="margin-bottom: 10px;">Backwards</button>
-      <button id="domain-highlight-next-selector" style="margin-bottom: 10px;">Forwards</button>
+      </script>
+      <p>
+         <button id="domain-highlight-previous-selector" style="margin-bottom: 10px;">Backwards</button>
+         <button id="domain-highlight-next-selector" style="margin-bottom: 10px;">Forwards</button>
+   </div>
 </body>
 
 </html>

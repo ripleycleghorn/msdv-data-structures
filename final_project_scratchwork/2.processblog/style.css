@@ -1,0 +1,18 @@
+.container {
+    display: grid;
+    grid-template-areas: "title"
+                         "A";
+    grid-template-rows: .5fr 1.5fr ;
+    grid-template-columns: 1fr;
+    padding-left: 50px;
+    padding-top: 50px;
+ }
+
+ .title {
+     grid-area: title;
+     /* text-align: center; */
+ }
+
+ .A {
+    grid-area: A;
+}

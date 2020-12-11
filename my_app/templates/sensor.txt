@@ -1,97 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<meta charset="utf-8">
+<style> /* set the CSS */
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sensor Data</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<style>
-    rect.bar-rect {
-        fill: #189ad3;
-    }
-
-    rect.bar-rect:hover {
-        fill: black;
-        transition: all .2s;
-    }
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+.high-threshold {
+  fill: none;
+  stroke: teal;
+  stroke-width: 2px;
+}
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 150px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: pink;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
 </style>
-
 <body>
-    <div class="canvas"></div>
-    <script src="https://d3js.org/d3.v6.js"></script>
-    <script>
-        const width = 1000;
-        const height = 600;
-        const margin = { 'top': 20, 'right': 20, 'bottom': 100, 'left': 100 };
-        const graphWidth = width - margin.left - margin.right;
-        const graphHeight = height - margin.top - margin.bottom;
 
-        const svg = d3.select('.canvas')
-            .append('svg')
-            .attr('width', width)
-            .attr('height', height);
-        const graph = svg.append('g')
-            .attr('width', graphWidth)
-            .attr('height', graphHeight)
-            .attr('transform', `translate(${margin.left}, ${margin.top})`);
-        const gXAxis = graph.append('g')
-            .attr('transform', `translate(0, ${graphHeight})`);
-        const gYAxis = graph.append('g')
+<!-- load the d3.js library -->    	
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script>
 
+// set the dimensions and margins of the graph
+var margin = {top: 20, right: 20, bottom: 50, left: 70},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
-        var today = new Date;
-        today.toUTCString;
-        var modifiedDate = new Date;
-        var lastMonth = modifiedDate.setMonth(modifiedDate.getMonth() - 1);
+// parse the date / time
+var parser = d3.utcParse("%Y-%m-%dT%H:%M:%S.%LZ");
+var formatTime = d3.timeFormat("%m-%dT%H:%M");
 
-        var data = {{{sensordata}}} ;
-        var parser = d3.utcParse("%Y-%m-%dT%H:%M:%S.%LZ");
+// set the ranges
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
 
-        data.forEach(element => {
-            element.sensortime = parser(element.sensortime);
-        });
-        console.log(data)
+// define the line
+var valueline = d3.line()
+    .x(function(d) { return x(d.sensortime); })
+    .y(function(d) { return y(d.sensorvalue); })
+    // .curve(d3.curveBasis);
 
-        const x = d3.scaleTime()
-            // .domain([lastMonth, today])
-            .domain(d3.extent(data, d => d.sensortime))
-            .range([0, graphWidth]);
+var high_threshold_line = d3.line()
+    .x(function(d){ return x(d.sensortime); })
+    .y(87);
 
-        const y = d3.scaleLinear()
-            // .domain([65, d3.max(data, d => d.sensorvalue)])
-            .domain([60, 80])
-            .range([graphHeight, 0]);
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
-        const rects = graph.selectAll('rect')
-            .data(data);
-        rects.attr('width', 5)
-            .attr('class', 'bar-rect')
-            .attr('height', d => graphHeight - y(d.sensorvalue))
-            .attr('x', d => x(d.sensortime))
-            .attr('y', d => y(d.sensorvalue));
-        rects.enter()
-            .append('rect')
-            .attr('class', 'bar-rect')
-            .attr('width', 5)
-            .attr('height', d => graphHeight - y(d.sensorvalue))
-            .attr('x', d => x(d.sensortime))
-            .attr('y', d => y(d.sensorvalue));
-        const xAxis = d3.axisBottom(x)
-            .ticks(3);
-        const yAxis = d3.axisLeft(y)
-            .ticks(5);
-        // .tickFormat(d => `USD ${d / 1000}K`);
-        gXAxis.call(xAxis);
-        gYAxis.call(yAxis);
-        gXAxis.selectAll('text')
-            .style('font-size', 14);
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
-        gYAxis.selectAll('text')
-            .style('font-size', 14);
+// Get the data
+var data = {{{sensordata}}} ;
 
-    </script>
+// format the data
+data.forEach(element => {
+    element.sensortime = parser(element.sensortime);
+});
+
+// Scale the range of the data
+x.domain(d3.extent(data, d => d.sensortime));
+y.domain([60, 70]);
+
+// Add the valueline path.
+svg.append("path")
+    .data([data])
+    .attr("class", "line")
+    .attr("d", valueline);
+
+// Add the x Axis
+svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+// Add the y Axis
+svg.append("g")
+    .call(d3.axisLeft(y));
+
+svg.append("path")
+    .data([data])
+    .attr("class", "line high-threshold")
+    .attr("d", high_threshold_line)
+svg.selectAll("dot")
+     .data(data)
+   .enter().append("circle")
+     .attr("r", 1.5)
+     .attr("cx", function(d) { return x(d.sensortime); })
+     .attr("cy", function(d) { return y(d.sensorvalue); })
+     .on("mouseover", function(event,d) {
+       div.transition()
+         .duration(200)
+         .style("opacity", .9);
+       div.html((d.sensortime.toLocaleString('en-US', { timeZone: 'UTC' })) + "<br/>" + Math.round(d.sensorvalue) + " degrees")
+         .style("left", (event.pageX) + "px")
+         .style("top", (event.pageY - 28) + "px");
+       })
+     .on("mouseout", function(d) {
+       div.transition()
+         .duration(500)
+         .style("opacity", 0);
+       });
+
+</script>
 </body>
-
-</html>

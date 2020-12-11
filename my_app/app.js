@@ -106,7 +106,7 @@ app.get('/temperature', function(req, res) {
     // Sample SQL statements for checking your work: 
     var thisQuery = 
                     `SELECT * FROM sensorData 
-                    WHERE (sensortime >= CURRENT_DATE - 30 
+                    WHERE (sensortime >= NOW() - '12 hour'::INTERVAL
                     AND sensorvalue > 60 
                     AND sensorvalue < 80);`;
     
@@ -166,7 +166,3 @@ app.listen(port, function() {
 });
 
 //'loc', building, 'address', address, 'title', title, 'day', day, 'types', type, 'start_time', start_time
-
-//WHERE day = ` + dayy + 'and start_time >= ' + hourr +
-
-//replace with my token: pk.eyJ1IjoicmNsZWdob3JuIiwiYSI6ImNraHFna2djMzAzcHQycm5wNDZicXZzeWkifQ.PkHCAnXl_a0JxoPiYmrzCw
