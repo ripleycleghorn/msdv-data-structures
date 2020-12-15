@@ -1,0 +1,224 @@
+[
+   {
+      "address":"7 East 10th Street"
+   },
+   {
+      "address":"155 East 22nd Street"
+   },
+   {
+      "address":"61 Fourth Avenue"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"123 East 15th Street"
+   },
+   {
+      "address":"61 Gramercy Park North"
+   },
+   {
+      "address":"155 East 22nd Street"
+   },
+   {
+      "address":"127 East 22nd Street"
+   },
+   {
+      "address":"602 East 9th Street"
+   },
+   {
+      "address":"125 West 14th Street"
+   },
+   {
+      "address":"346 W. 20th Street"
+   },
+   {
+      "address":"125 West 14th Street"
+   },
+   {
+      "address":"414 East 14th Street"
+   },
+   {
+      "address":"119 Ninth Avenue"
+   },
+   {
+      "address":"202 West 24 Street"
+   },
+   {
+      "address":"28 Gramercy Park South"
+   },
+   {
+      "address":"50 East 7th Street"
+   },
+   {
+      "address":"273 Bowery"
+   },
+   {
+      "address":"802 Broadway"
+   },
+   {
+      "address":"28 Grammercy Park South"
+   },
+   {
+      "address":"209 East 16th Street"
+   },
+   {
+      "address":"44 2nd Avenue"
+   },
+   {
+      "address":"229 West 14th Street"
+   },
+   {
+      "address":"229 West 14th Street"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"28 Gramercy Park South"
+   },
+   {
+      "address":"208 W 13th Street"
+   },
+   {
+      "address":"307 W. 26th St."
+   },
+   {
+      "address":"343 West 25th Street"
+   },
+   {
+      "address":"80 St. Mark's Place"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"51 East 25th Street"
+   },
+   {
+      "address":"155 East 22nd Street"
+   },
+   {
+      "address":"7 East 10th Street"
+   },
+   {
+      "address":"315 West 22nd Street"
+   },
+   {
+      "address":"15 Rutherford Place"
+   },
+   {
+      "address":"25 East 15th Street"
+   },
+   {
+      "address":"175 9th Avenue"
+   },
+   {
+      "address":"19 Union Square West"
+   },
+   {
+      "address":"155 East 22nd Street"
+   },
+   {
+      "address":"423 East 23rd Street"
+   },
+   {
+      "address":"209 East 16th Street"
+   },
+   {
+      "address":"411 East 12th Street"
+   },
+   {
+      "address":"209 East 16th Street"
+   },
+   {
+      "address":"239 East 21st Street"
+   },
+   {
+      "address":"12 West 12th Street"
+   },
+   {
+      "address":"44 2nd Avenue"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"12 West 11th Street"
+   },
+   {
+      "address":"116 West 11th Street"
+   },
+   {
+      "address":"80 5th Avenue"
+   },
+   {
+      "address":"116 W. 11th Street"
+   },
+   {
+      "address":"155 East 22nd Street"
+   },
+   {
+      "address":"319 Eastr 24th Street"
+   },
+   {
+      "address":"10 East Union Square"
+   },
+   {
+      "address":"206 East 11th Street"
+   },
+   {
+      "address":"123 East 15th Street"
+   },
+   {
+      "address":"411 East 12th Street"
+   },
+   {
+      "address":"125 West 14th Street"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"10 Union Square East"
+   },
+   {
+      "address":"155 West 22nd Street"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"12 West 12th Street"
+   },
+   {
+      "address":"20 Washington Square North"
+   },
+   {
+      "address":"344 East 14th Street"
+   },
+   {
+      "address":"155 West 22nd Street"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"602 East 9th Street"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"208 West 13th Street"
+   },
+   {
+      "address":"19 Union Square West"
+   },
+   {
+      "address":"173 East 3rd Street"
+   },
+   {
+      "address":"50 East 7th Street"
+   }
+]

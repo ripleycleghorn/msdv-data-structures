@@ -15,7 +15,7 @@ The data will be mapped to the visual elements in the map by address, which will
 
 I'm assuming that people will know how to search by meeting name or address and/or know how to filter and/or be able to find their meeting on a map.
 
-<img width="75%" height="auto" src="https://ripleycleghorn.github.io/msdv-data-structures/wa_10/finalassignment1.png" alt="Data interface drawing 1">
+<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_10/finalassignment1.png" alt="Data interface drawing">
 
 ## Final Assignment 2
 
@@ -23,7 +23,7 @@ The visualization I'll choose for my process blog data is a simple heat map base
 
 In order to display this information I will need to group entries by day (not day/time). The minimum amount of data I will need to display the information will be one month of records, since the default view will be an entire month. Although the default view could just as well be a week, in order to achieve an effecitve overview of how often I exercise, I think 30 days is better suited.
 
-<img width="50%" height="auto" src="https://ripleycleghorn.github.io/msdv-data-structures/wa_10/finalassignment2.jpg" alt="Data interface drawing 2">
+<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_10/finalassignment2.png" alt="Data interface drawing">
 
 ## Final Assignment 3
 
@@ -33,4 +33,4 @@ In order to see the feasibility of building a wine cellar, I will map the temper
 
 In terms of the data, it will be pretty straightforward to map the temperatures to a line graph. However in order to emphasize the possible fluctuation I will need to calculate the difference between each temperature and the following day's temperature. I will also need to make sure the date is shown in the correct format on the x-axis
 
-<img width="75%" height="auto" src="https://ripleycleghorn.github.io/msdv-data-structures/wa_10/finalassignment3.jpg" alt="Data interface drawing 3">
+<img src="https://ripleycleghorn.github.io/msdv-data-structures/wa_10/finalassignment3.jpg" alt="Data interface drawing">

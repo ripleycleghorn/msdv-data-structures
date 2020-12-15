@@ -22,7 +22,7 @@ let detailsForDb = JSON.parse(rawdata);
 async.eachSeries(detailsForDb, function(value, callback) {
     const client = new Client(db_credentials);
     client.connect();
-    var thisQuery = escape("INSERT INTO aadetails VALUES (DEFAULT, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L)",
+    var thisQuery = escape("INSERT INTO aadetails VALUES (DEFAULT, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L)",
     value.address,
     value.latitude,
     value.longitude,
@@ -34,7 +34,9 @@ async.eachSeries(detailsForDb, function(value, callback) {
     value.day,
     value.start_time,
     value.end_time,
-    value.type);
+    value.type,
+    value.hour_string,
+    value.day_number);
     
     //"INSERT INTO aadetails VALUES (E'" + ) + "', E'" +  + "', E'" + value.day + "', E'" + value.start_time + "', E'" + value.end_time + "', E'" + value.type + "');";
     client.query(thisQuery, (err, res) => {

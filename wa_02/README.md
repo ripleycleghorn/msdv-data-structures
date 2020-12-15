@@ -27,12 +27,11 @@ After giving RegEx a decent attempt, I was given the suggestion of using the Str
 
     var addressesLong = content.split("<\/b><br \/>", 53);
 ## Step 4: Clean data
-This returned an array of 53 items, where each item was a rather large block of text. The positive side was that every item started with the address, so all I needed to do was chop off the proceeding text. This was fairly easy to do given that every item followed the pattern of "address" + ",". So I used a method the substring() to delete the characters following the first commma for every item. I also trimmed any white space that came before or after the address.
+This returned an array of 53 items, where each item was a rather large block of text. The positive side was that every item started with the address, so all I needed to do was chop off the proceeding text. This was fairly easy to do given that every item followed the pattern of "address" + ",". So I used the method substring() to delete the characters following the first commma for every item. I also trimmed any white space that came before or after the address.
 
     addressesLong.forEach(item => {
         var address = '';
-        address = item.substring(0, item.indexOf(','));
-        address = address.trim();
+        address = item.substring(0, item.indexOf(',')).trim();
         addressesShort.push(address);
     });
 

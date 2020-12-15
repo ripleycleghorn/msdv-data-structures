@@ -2455,10 +2455,6 @@ table thead th {
                     </td>
                     <td style="border-bottom:1px solid #e3e3e3;width:350px;" valign="top">
                    	 	
-				  	    <b>s From</b>  12:00 AM <b>to</b> 12:00 AM 
-			 			<br />
-                    	<br />
-                    	
 				  	    <b>Mondays From</b>  7:30 PM <b>to</b> 8:30 PM <br /><b>Meeting Type</b> C = Closed Discussion meeting <br /><b>Special Interest</b> Interpreted for the Deaf
 			 			<br />
                     	<br />

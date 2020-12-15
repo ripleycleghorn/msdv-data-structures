@@ -15,7 +15,7 @@ const API_URL = 'https://geoservices.tamu.edu/Services/Geocode/WebService/Geocod
 // geocode addresses
 // var newObj = [];
 let meetingsData = [];
-let rawdata = fs.readFileSync('../wa_07/data/01.json');
+let rawdata = fs.readFileSync('../data/01.json');
 let addresses = JSON.parse(rawdata);
 
 // eachSeries in the async module iterates over an array and operates on each item in the array in series
@@ -47,7 +47,7 @@ async.eachSeries(addresses, function(value, callback) {
     setTimeout(callback, 2000);
 }, function() {
     //rewrite the json file with added geolocation details
-    fs.writeFileSync('../wa_07/data/01.json', JSON.stringify(meetingsData));
+    fs.writeFileSync('../data/01.json', JSON.stringify(meetingsData));
     console.log('*** *** *** *** ***');
     console.log('Number of meetings in this zone: ', meetingsData.length);
 });

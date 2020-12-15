@@ -54,11 +54,23 @@ bigList.forEach((item, index) => {
             var day = item.split('From')[0].replace("<b>", "").trim();
             var times = item.split('From')[1].split('<br /><b>')[0].replace("</b>", "").replace("<b>to</b>", "to").split("to");
             var startTime = times[0].trim();
+            var hour = parseInt(startTime.split(':')[0]);
+            
+            
+            //final touches, run once I'm sure that the app is working correctly so that I only have to run tamu once
+            if(startTime.includes('PM') && !startTime.includes('12')) {
+                hour += 12;
+            }
+            else if(startTime.includes('AM') && startTime.includes('12')) {
+                hour += 12;
+            }
+            day = day.substring(0, day.length - 1);
+            
             var endTime = times[1].trim();
             var type = item.split('From')[1].split('<br /><b>')[1];
             //in files 07 and 08 there were meetings where type was undefined, but still valid meetings so I should include them
             type = (item.split('From')[1].split('<br /><b>')[1] == undefined) ? "" : type.replace("</b>", "");
-            daytimeList.push({"day": day, "start_time": startTime, "end_time": endTime, "type": type, "specialInterest": specialInterest});
+            daytimeList.push({"day": day, "start_time": startTime, "end_time": endTime, "type": type, "specialInterest": specialInterest, "hour": hour});
         });
         //repeat meeting details, location, etc. for each day/time combination at that location
         daytimeList.forEach(item => {
@@ -72,7 +84,8 @@ bigList.forEach((item, index) => {
                 "day": item.day,
                 "start_time": item.start_time,
                 "end_time": item.end_time,
-                "type": item.type
+                "type": item.type,
+                "hour": item.hour
              });
         });
     }

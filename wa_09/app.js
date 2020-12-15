@@ -12,6 +12,7 @@ var db_credentials = new Object();
 db_credentials.user = 'rcleghorn';
 db_credentials.host = 'ds-20.cbk4m9wel0if.us-east-1.rds.amazonaws.com';
 db_credentials.database = 'aa';
+//for some reason it doesn't work to read the password in from the .env file (only works hardcoded)
 db_credentials.password = process.env.AWSRDS_PW;
 db_credentials.port = 5432;
 

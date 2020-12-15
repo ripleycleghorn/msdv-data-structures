@@ -3086,10 +3086,6 @@ table thead th {
                     </td>
                     <td style="border-bottom:1px solid #e3e3e3;width:350px;" valign="top">
                    	 	
-				  	    <b>s From</b>  12:00 AM <b>to</b> 12:00 AM 
-			 			<br />
-                    	<br />
-                    	
 				  	    <b>Wednesdays From</b>  6:15 AM <b>to</b> 7:15 AM <br /><b>Meeting Type</b> C = Closed Discussion meeting 
 			 			<br />
                     	<br />

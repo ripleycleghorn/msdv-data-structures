@@ -18,7 +18,7 @@ const client = new Client(db_credentials);
 client.connect();
 
 //create table with all meeting details
-var thisQuery = "CREATE TABLE aadetails (ID serial primary key, address varchar(100), latitude varchar(100), longitude varchar(100), details varchar(200), building varchar(200), title varchar(200), location_notes varchar(200), wheelchair_accesible varchar(100), day varchar(100), start_time varchar(100), end_time varchar(100), type varchar(100));";
+var thisQuery = "CREATE TABLE aadetails (ID serial primary key, address varchar(100), latitude varchar(100), longitude varchar(100), details varchar(200), building varchar(200), title varchar(200), location_notes varchar(200), wheelchair_accesible varchar(100), day varchar(100), start_time varchar(100), end_time varchar(100), type varchar(100), hour smallint, day_number smallint);";
 
 // var thisQuery = "DROP TABLE aadetails;";
 

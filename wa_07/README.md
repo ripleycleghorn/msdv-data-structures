@@ -5,7 +5,7 @@ Overall workflow:
 1. `wa_07a` reads the text files from the text files folder (which we downloaded in week one), parses it for necessary info, and writes flattened json to data folder
 2. `wa_03` reads flattened json, gets geolocation data using the TAMU API, appends new address/lat/long to that json and rewrites the file
 3. `wa_07b` creates one sql table with all fields
-4. `wa_07c` reads json from step 2 and inserts into sql database
+4. `wa_0c` reads json from step 2 and inserts into sql database
 5. `wa_07d` counts number of rows in the database
 
 
