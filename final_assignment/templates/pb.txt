@@ -67,11 +67,11 @@
             domain: "month", // Set each domain to be 1 month
             subDomain: "x_day", // Illustrate hours left to right (as opposed to top to bottom)
             // subDomainTextFormat: "%d",
-            // start: new Date(2020, 8, 1), // Set the initial start date to render (month starts with index 0)
             start: start_date,
-            cellSize: 30, // Set size of each days
-            domainGutter: 5, // Set spacing between domains
-            domainMargin: 5,
+            cellSize: 20, // Set size of each days
+            //cellRadius: 10,
+            domainGutter: 10, // Set spacing between domains
+            domainMargin: 10,
             animationDuration: 900, // Set animation speed
             nextSelector: "#domain-highlight-next-selector", // What to call when selector buttons are clicked
             previousSelector: "#domain-highlight-previous-selector",
@@ -81,8 +81,8 @@
          });
       </script>
       <p>
-         <button id="domain-highlight-previous-selector" style="margin-bottom: 10px;">Backwards</button>
-         <button id="domain-highlight-next-selector" style="margin-bottom: 10px;">Forwards</button>
+         <!-- <button id="domain-highlight-previous-selector" style="margin-bottom: 10px;">Backwards</button>
+         <button id="domain-highlight-next-selector" style="margin-bottom: 10px;">Forwards</button> -->
    </div>
 </body>
 

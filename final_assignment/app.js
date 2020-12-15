@@ -64,7 +64,7 @@ var jx = `;
 
 
 app.get('/', function(req, res) {
-    res.send('<h3>Code demo site</h3><ul><li><a href="/aa">aa meetings!</a></li><li><a href="/temperature">temp sensor</a></li><li><a href="/processblog">process blog</a></li></ul>');
+    res.send('<h3>Code demo site</h3><ul><li><a href="/aa">aa meetings</a></li><li><a href="/temperature">temp sensor</a></li><li><a href="/processblog">process blog</a></li></ul>');
 }); 
 
 // respond to requests for /aa
@@ -125,19 +125,23 @@ app.get('/processblog', function(req, res) {
     // AWS DynamoDB credentials
     AWS.config = new AWS.Config();
     AWS.config.region = "us-east-1";
+    console.log(req.query.type);
+    var thismode = "biking";
+    if (["biking", "yoga", "roller skating", "hiking"].includes(req.query.type)) {
+        thismode = req.query.type;
+    }
     
     var dynamodb = new AWS.DynamoDB();
-    
     var params = {
         TableName : "process-blog2",
         KeyConditionExpression: "#md = :thismode and timedate between :minDate and :maxDate", // the query expression
         ExpressionAttributeNames: { // name substitution, used for reserved words in DynamoDB
             "#md" : "mode"
         },
-        ExpressionAttributeValues: { // the query values
-            ":thismode": {S: "roller skating"},
-            ":minDate": {N: new Date("October 2, 2020").valueOf().toString()},
-            ":maxDate": {N: new Date("November 25, 2020").valueOf().toString()}
+        ExpressionAttributeValues: { // the query values, set date to last three months, starting from the 1st of the month
+            ":thismode": {S: thismode},
+            ":minDate": {N: new Date(new Date().getFullYear(),new Date().getMonth() - 3,1).valueOf().toString()},
+            ":maxDate": {N: new Date().valueOf().toString()}
         }
     };
     
